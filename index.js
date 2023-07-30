@@ -4,7 +4,6 @@ import session from "express-session";
 import dotenv from "dotenv";
 import db from "./config/Database.js";
 import SequelizeStore from "connect-session-sequelize";
-import SiswaRoute from "./routes/SiswaRoute.js";
 import UsersRoute from "./routes/UsersRoute.js";
 import IjazahRoute from "./routes/IjazahRoute.js";
 import SertifikatRoute from "./routes/SertifikatRoute.js";
@@ -41,7 +40,6 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(SiswaRoute);
 app.use(UsersRoute);
 app.use(IjazahRoute);
 app.use(SertifikatRoute);
@@ -51,5 +49,5 @@ app.use(AuthRoute);
 // store.sync();
 
 app.listen(process.env.APP_PORT, () => {
-  console.log("Server berjalan di PORT 5000");
+  console.log("Server berjalan di http://localhost:" + process.env.APP_PORT);
 });

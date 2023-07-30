@@ -5,9 +5,21 @@ import { Op } from "sequelize";
 export const getIjazah = async (req, res) => {
   try {
     let response;
-    if (req.roles === "admin") {
+    if (
+      (req.roles === "admin", "mitra penerbit", "kesiswaan", "kepala sekolah")
+    ) {
       response = await Ijazah.findAll({
-        attributes: ["uuid", "no_ijazah", "arsip_ijazah"],
+        attributes: [
+          "uuid",
+          "no_ijazah",
+          "nisn",
+          "nis",
+          "nama",
+          "jk",
+          "nama_orangtua",
+          "prodi",
+          "arsip_ijazah",
+        ],
         include: [
           {
             model: Users,
@@ -17,7 +29,17 @@ export const getIjazah = async (req, res) => {
       });
     } else {
       response = await Ijazah.findAll({
-        attributes: ["uuid", "no_ijazah", "arsip_ijazah"],
+        attributes: [
+          "uuid",
+          "no_ijazah",
+          "nisn",
+          "nis",
+          "nama",
+          "jk",
+          "nama_orangtua",
+          "prodi",
+          "arsip_ijazah",
+        ],
         where: {
           userId: req.userId,
         },
@@ -49,7 +71,17 @@ export const getIjazahById = async (req, res) => {
     let response;
     if (req.roles === "admin") {
       response = await Ijazah.findOne({
-        attributes: ["uuid", "no_ijazah", "arsip_ijazah"],
+        attributes: [
+          "uuid",
+          "no_ijazah",
+          "nisn",
+          "nis",
+          "nama",
+          "jk",
+          "nama_orangtua",
+          "prodi",
+          "arsip_ijazah",
+        ],
         where: {
           id: ijazah.id,
         },
@@ -62,7 +94,17 @@ export const getIjazahById = async (req, res) => {
       });
     } else {
       response = await Ijazah.findOne({
-        attributes: ["uuid", "no_ijazah", "arsip_ijazah"],
+        attributes: [
+          "uuid",
+          "no_ijazah",
+          "nisn",
+          "nis",
+          "nama",
+          "jk",
+          "nama_orangtua",
+          "prodi",
+          "arsip_ijazah",
+        ],
         where: {
           [Op.and]: [{ id: ijazah.id }, { userId: req.userId }],
         },
@@ -81,14 +123,30 @@ export const getIjazahById = async (req, res) => {
 };
 
 export const createIjazah = async (req, res) => {
-  const { no_ijazah, arsip_ijazah } = req.body;
   try {
-    await Ijazah.create({
+    const {
+      no_ijazah,
+      nisn,
+      nis,
+      nama,
+      jk,
+      nama_orangtua,
+      prodi,
+      arsip_ijazah,
+    } = req.body;
+
+    const newIjazah = await Ijazah.create({
       no_ijazah: no_ijazah,
+      nisn: nisn,
+      nis: nis,
+      nama: nama,
+      jk: jk,
+      nama_orangtua: nama_orangtua,
+      prodi: prodi,
       arsip_ijazah: arsip_ijazah,
       userId: req.userId,
     });
-    res.status(201).json({ msg: "Data arsip ijazah berhasil disimpan!" });
+    res.status(201).json({ msg: "Data arsip sertifikat berhasil disimpan!", data: newIjazah });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -105,10 +163,19 @@ export const updateIjazah = async (req, res) => {
       return res
         .status(404)
         .json({ msg: "Data arsip ijazah tidak dapat ditemukan!" });
-    const { no_ijazah, arsip_ijazah } = req.body;
+    const {
+      no_ijazah,
+      nisn,
+      nis,
+      nama,
+      jk,
+      prodi,
+      nama_orangtua,
+      arsip_ijazah,
+    } = req.body;
     if (req.roles === "admin") {
-      await Products.update(
-        { no_ijazah, arsip_ijazah },
+      await Ijazah.update(
+        { no_ijazah, nisn, nis, nama, jk, prodi, nama_orangtua, arsip_ijazah },
         {
           where: {
             id: ijazah.id,
@@ -121,7 +188,7 @@ export const updateIjazah = async (req, res) => {
           .status(403)
           .json({ msg: "Akses tertolak, otoritas hanya untuk admin" });
       await Ijazah.update(
-        { no_ijazah, arsip_ijazah },
+        { no_ijazah, nisn, nis, nama, jk, prodi, nama_orangtua, arsip_ijazah },
         {
           where: {
             [Op.and]: [{ id: ijazah.id }, { userId: req.userId }],
@@ -146,7 +213,16 @@ export const deleteIjazah = async (req, res) => {
       return res
         .status(404)
         .json({ msg: "Data arsip ijazah tidak dapat ditemukan!" });
-    const { no_ijazah, arsip_ijazah } = req.body;
+    const {
+      no_ijazah,
+      nisn,
+      nis,
+      nama,
+      jk,
+      nama_orangtua,
+      prodi,
+      arsip_ijazah,
+    } = req.body;
     if (req.roles === "admin") {
       await Ijazah.destroy({
         where: {
@@ -154,7 +230,7 @@ export const deleteIjazah = async (req, res) => {
         },
       });
     } else {
-      if (req.userId !== product.userId)
+      if (req.userId !== ijazah.userId)
         return res
           .status(403)
           .json({ msg: "Akses tertolak, otoritas hanya untuk admin" });

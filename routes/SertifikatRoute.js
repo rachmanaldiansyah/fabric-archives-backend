@@ -10,7 +10,7 @@ import { verifyPengguna, adminOnly} from "../middleware/AuthPengguna.js";
 
 const router = express.Router();
 
-router.get('/sertifikat', verifyPengguna, adminOnly, getSertifikat);
+router.get('/sertifikat', verifyPengguna, getSertifikat);
 router.get('/sertifikat/:id', verifyPengguna, adminOnly, getSertifikatById);
 router.post('/sertifikat', verifyPengguna, adminOnly, createSertifikat);
 router.patch('/sertifikat/:id', verifyPengguna, adminOnly, updateSertifikat);

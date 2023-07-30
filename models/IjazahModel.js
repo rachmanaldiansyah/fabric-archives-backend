@@ -1,7 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 import Users from "./UsersModel.js";
-import Siswa from "./SiswaModel.js";
 
 const { DataTypes } = Sequelize;
 const Ijazah = db.define(
@@ -22,6 +21,48 @@ const Ijazah = db.define(
         notEmpty: true,
       },
     },
+    nisn: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    nis: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    nama: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    jk: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    nama_orangtua: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
+    prodi: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
     arsip_ijazah: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -31,14 +72,7 @@ const Ijazah = db.define(
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      validate: {
-        notEmpty: true,
-      },
-    },
-    siswaId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       validate: {
         notEmpty: true,
       },
@@ -51,8 +85,5 @@ const Ijazah = db.define(
 
 Users.hasMany(Ijazah);
 Ijazah.belongsTo(Users, { foreignKey: "userId" });
-
-Siswa.hasMany(Ijazah);
-Ijazah.belongsTo(Siswa, { foreignKey: "siswaId" });
 
 export default Ijazah;
