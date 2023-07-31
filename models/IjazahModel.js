@@ -70,6 +70,22 @@ const Ijazah = db.define(
         notEmpty: true,
       },
     },
+    konfirmasi_kepsek: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+      defaultValue: "False",
+    },
+    konfirmasi_kesiswaan: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+      defaultValue: "False",
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: true,

@@ -1,4 +1,4 @@
-import Users from "../models/UsersModel.js"
+import Users from "../models/UsersModel.js";
 import argon2 from "argon2"; // import depedencies untuk hashing password
 
 export const getUsers = async (req, res) => {

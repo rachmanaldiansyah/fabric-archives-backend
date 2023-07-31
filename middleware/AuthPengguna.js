@@ -9,7 +9,8 @@ export const verifyPengguna = async (req, res, next) => {
       uuid: req.session.userId,
     },
   });
-  if (!user) return res.status(404).json({ msg: "Pengguna tidak dapat ditemukan!" });
+  if (!user)
+    return res.status(404).json({ msg: "Pengguna tidak dapat ditemukan!" });
   req.userId = user.id;
   req.roles = user.roles;
   next();
@@ -21,7 +22,8 @@ export const adminOnly = async (req, res, next) => {
       uuid: req.session.userId,
     },
   });
-  if (!user) return res.status(404).json({ msg: "Pengguna tidak dapat ditemukan" });
+  if (!user)
+    return res.status(404).json({ msg: "Pengguna tidak dapat ditemukan" });
   if (user.roles !== "admin")
     return res.status(403).json({ msg: "Hanya dapat diakses oleh admin!" });
   next();

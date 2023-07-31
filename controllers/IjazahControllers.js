@@ -146,7 +146,12 @@ export const createIjazah = async (req, res) => {
       arsip_ijazah: arsip_ijazah,
       userId: req.userId,
     });
-    res.status(201).json({ msg: "Data arsip sertifikat berhasil disimpan!", data: newIjazah });
+    res
+      .status(201)
+      .json({
+        msg: "Data arsip sertifikat berhasil disimpan!",
+        data: newIjazah,
+      });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -172,10 +177,27 @@ export const updateIjazah = async (req, res) => {
       prodi,
       nama_orangtua,
       arsip_ijazah,
+      konfirmasi_kepsek,
+      konfirmasi_kesiswaan,
     } = req.body;
-    if (req.roles === "admin") {
+    if (
+      req.roles === "admin" ||
+      req.roles === "kepala sekolah" ||
+      req.roles === "kesiswaan"
+    ) {
       await Ijazah.update(
-        { no_ijazah, nisn, nis, nama, jk, prodi, nama_orangtua, arsip_ijazah },
+        {
+          no_ijazah,
+          nisn,
+          nis,
+          nama,
+          jk,
+          prodi,
+          nama_orangtua,
+          arsip_ijazah,
+          konfirmasi_kepsek,
+          konfirmasi_kesiswaan,
+        },
         {
           where: {
             id: ijazah.id,
@@ -188,7 +210,18 @@ export const updateIjazah = async (req, res) => {
           .status(403)
           .json({ msg: "Akses tertolak, otoritas hanya untuk admin" });
       await Ijazah.update(
-        { no_ijazah, nisn, nis, nama, jk, prodi, nama_orangtua, arsip_ijazah },
+        {
+          no_ijazah,
+          nisn,
+          nis,
+          nama,
+          jk,
+          prodi,
+          nama_orangtua,
+          arsip_ijazah,
+          konfirmasi_kepsek,
+          konfirmasi_kesiswaan,
+        },
         {
           where: {
             [Op.and]: [{ id: ijazah.id }, { userId: req.userId }],
@@ -222,6 +255,8 @@ export const deleteIjazah = async (req, res) => {
       nama_orangtua,
       prodi,
       arsip_ijazah,
+      konfirmasi_kepsek,
+      konfirmasi_kesiswaan,
     } = req.body;
     if (req.roles === "admin") {
       await Ijazah.destroy({

@@ -56,13 +56,29 @@ const Sertifikat = db.define(
         notEmpty: true,
       },
     },
+    konfirmasi_kepsek: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+      defaultValue: "False",
+    },
+    konfirmasi_mitra: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+      defaultValue: "False",
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: true,
       validate: {
         notEmpty: true,
       },
-    }
+    },
   },
   {
     freezeTableName: true,

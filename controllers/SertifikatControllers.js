@@ -126,7 +126,9 @@ export const createSertifikat = async (req, res) => {
       arsip_sertifikat: arsip_sertifikat,
       userId: req.userId,
     });
-    res.status(201).json({ msg: "Data sertifikat uji kompetensi berhasil diarsipkan!" });
+    res
+      .status(201)
+      .json({ msg: "Data sertifikat uji kompetensi berhasil diarsipkan!" });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -142,7 +144,9 @@ export const updateSertifikat = async (req, res) => {
     if (!sertifikat)
       return res
         .status(404)
-        .json({ msg: "Data arsip sertifikat uji kompetensi tidak dapat ditemukan!" });
+        .json({
+          msg: "Data arsip sertifikat uji kompetensi tidak dapat ditemukan!",
+        });
     const { no_sertifikat, nis, nama, jk, keahlian, arsip_sertifikat } =
       req.body;
     if (req.roles === "admin") {
@@ -168,7 +172,11 @@ export const updateSertifikat = async (req, res) => {
         }
       );
     }
-    res.status(200).json({ msg: "Data arsip sertifikat uji kompetensi berhasil di update!" });
+    res
+      .status(200)
+      .json({
+        msg: "Data arsip sertifikat uji kompetensi berhasil di update!",
+      });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -184,7 +192,9 @@ export const deleteSertifikat = async (req, res) => {
     if (!sertifikat)
       return res
         .status(404)
-        .json({ msg: "Data arsip sertifikat uji kompetensi tidak dapat ditemukan!" });
+        .json({
+          msg: "Data arsip sertifikat uji kompetensi tidak dapat ditemukan!",
+        });
     const { no_sertifikat, nis, nama, jk, keahlian, arsip_sertifikat } =
       req.body;
     if (req.roles === "admin") {
@@ -204,7 +214,9 @@ export const deleteSertifikat = async (req, res) => {
         },
       });
     }
-    res.status(200).json({ msg: "Data arsip sertifikat uji kompetensi berhasil di hapus!" });
+    res
+      .status(200)
+      .json({ msg: "Data arsip sertifikat uji kompetensi berhasil di hapus!" });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }

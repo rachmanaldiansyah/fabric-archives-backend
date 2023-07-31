@@ -31,7 +31,9 @@ export const Me = async (req, res) => {
     },
   });
   if (!user)
-    return res.status(404).json({ msg: "Data pengguna tidak dapat ditemukan!" });
+    return res
+      .status(404)
+      .json({ msg: "Data pengguna tidak dapat ditemukan!" });
   res.status(200).json(user);
 };
 
