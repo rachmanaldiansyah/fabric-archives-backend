@@ -12,8 +12,8 @@ const router = express.Router();
 
 router.get("/sertifikat", verifyPengguna, getSertifikat);
 router.get("/sertifikat/:id", verifyPengguna, adminOnly, getSertifikatById);
-router.post("/sertifikat", verifyPengguna, adminOnly, createSertifikat);
-router.patch("/sertifikat/:id", verifyPengguna, adminOnly, updateSertifikat);
+router.post("/sertifikat", verifyPengguna, createSertifikat);
+router.patch("/sertifikat/:id", verifyPengguna, updateSertifikat);
 router.delete("/sertifikat/:id", verifyPengguna, adminOnly, deleteSertifikat);
 
 export default router;

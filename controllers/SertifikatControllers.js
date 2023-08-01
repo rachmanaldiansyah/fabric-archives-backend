@@ -17,6 +17,8 @@ export const getSertifikat = async (req, res) => {
           "jk",
           "keahlian",
           "arsip_sertifikat",
+          "konfirmasi_kepsek",
+          "konfirmasi_mitra",
         ],
         include: [
           {
@@ -35,6 +37,8 @@ export const getSertifikat = async (req, res) => {
           "jk",
           "keahlian",
           "arsip_sertifikat",
+          "konfirmasi_kepsek",
+          "konfirmasi_mitra",
         ],
         where: {
           userId: req.userId,
@@ -75,6 +79,8 @@ export const getSertifikatById = async (req, res) => {
           "jk",
           "keahlian",
           "arsip_sertifikat",
+          "konfirmasi_kepsek",
+          "konfirmasi_mitra",
         ],
         where: {
           id: sertifikat.id,
@@ -96,6 +102,8 @@ export const getSertifikatById = async (req, res) => {
           "jk",
           "keahlian",
           "arsip_sertifikat",
+          "konfirmasi_kepsek",
+          "konfirmasi_mitra",
         ],
         where: {
           [Op.and]: [{ id: sertifikat.id }, { userId: req.userId }],
@@ -142,16 +150,35 @@ export const updateSertifikat = async (req, res) => {
       },
     });
     if (!sertifikat)
-      return res
-        .status(404)
-        .json({
-          msg: "Data arsip sertifikat uji kompetensi tidak dapat ditemukan!",
-        });
-    const { no_sertifikat, nis, nama, jk, keahlian, arsip_sertifikat } =
-      req.body;
-    if (req.roles === "admin") {
+      return res.status(404).json({
+        msg: "Data arsip sertifikat uji kompetensi tidak dapat ditemukan!",
+      });
+    const {
+      no_sertifikat,
+      nis,
+      nama,
+      jk,
+      keahlian,
+      arsip_sertifikat,
+      konfirmasi_kepsek,
+      konfirmasi_mitra,
+    } = req.body;
+    if (
+      req.roles === "admin" ||
+      req.roles === "kepala sekolah" ||
+      req.roles === "mitra penerbit"
+    ) {
       await Sertifikat.update(
-        { no_sertifikat, nis, nama, jk, keahlian, arsip_sertifikat },
+        {
+          no_sertifikat,
+          nis,
+          nama,
+          jk,
+          keahlian,
+          arsip_sertifikat,
+          konfirmasi_kepsek,
+          konfirmasi_mitra,
+        },
         {
           where: {
             id: sertifikat.id,
@@ -164,7 +191,16 @@ export const updateSertifikat = async (req, res) => {
           .status(403)
           .json({ msg: "Akses tertolak, otoritas hanya untuk admin." });
       await Sertifikat.update(
-        { no_sertifikat, nis, nama, jk, keahlian, arsip_sertifikat },
+        {
+          no_sertifikat,
+          nis,
+          nama,
+          jk,
+          keahlian,
+          arsip_sertifikat,
+          konfirmasi_kepsek,
+          konfirmasi_mitra,
+        },
         {
           where: {
             [Op.and]: [{ id: sertifikat.id }, { userId: req.userId }],
@@ -172,11 +208,9 @@ export const updateSertifikat = async (req, res) => {
         }
       );
     }
-    res
-      .status(200)
-      .json({
-        msg: "Data arsip sertifikat uji kompetensi berhasil di update!",
-      });
+    res.status(200).json({
+      msg: "Data arsip sertifikat uji kompetensi berhasil di update!",
+    });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -190,11 +224,9 @@ export const deleteSertifikat = async (req, res) => {
       },
     });
     if (!sertifikat)
-      return res
-        .status(404)
-        .json({
-          msg: "Data arsip sertifikat uji kompetensi tidak dapat ditemukan!",
-        });
+      return res.status(404).json({
+        msg: "Data arsip sertifikat uji kompetensi tidak dapat ditemukan!",
+      });
     const { no_sertifikat, nis, nama, jk, keahlian, arsip_sertifikat } =
       req.body;
     if (req.roles === "admin") {
