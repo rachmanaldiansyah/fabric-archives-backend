@@ -39,15 +39,21 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
+
 app.use(express.json());
 app.use(UsersRoute);
 app.use(IjazahRoute);
 app.use(SertifikatRoute);
 app.use(AuthRoute);
 
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 // membuat session-sequelize
 // store.sync();
 
-app.listen(process.env.APP_PORT, () => {
-  console.log("Server berjalan di http://localhost:" + process.env.APP_PORT);
+app.listen(process.env.APP_PORT_DB, () => {
+  console.log("Server berjalan di http://localhost:" + process.env.APP_PORT_DB);
 });
