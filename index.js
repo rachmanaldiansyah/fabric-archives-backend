@@ -55,5 +55,5 @@ app.use((req, res, next) => {
 // store.sync();
 
 app.listen(process.env.APP_PORT_DB, () => {
-  console.log("Server berjalan di http://localhost:" + process.env.APP_PORT_DB);
+  console.log("Server is running on http://localhost:" + process.env.APP_PORT_DB);
 });
