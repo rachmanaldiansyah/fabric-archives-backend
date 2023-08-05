@@ -6,7 +6,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js"
+    "start": "concurrently \"nodemon index.js\" \"nodemon proxy-server-kesiswaan.js\" \"nodemon proxy-server-mitra.js\""
   },
   "keywords": [],
   "author": "Rachman Aldiansyah",
@@ -32,5 +32,8 @@
     "pizzip": "^3.1.4",
     "sequelize": "^6.32.1",
     "web3.storage": "^4.5.5"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
   }
 }
