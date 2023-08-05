@@ -26,7 +26,7 @@ app.options(
   })
 );
 
-// Handle the /user/enroll route manually
+// Handle the /user/enroll for peer kesiswaan
 app.post("/user/enroll", async (req, res) => {
   try {
     const enrollResponse = await axios.post(
@@ -74,7 +74,6 @@ app.post("/invoke/ijazah/chaincode-ijazah", async (req, res) => {
   }
 });
 
-// Handle the /invoke/sertifikat/chaincode-sertifikat route manually
 app.post("/invoke/sertifikat/chaincode-sertifikat", async (req, res) => {
   try {
     const createAssetResponse = await axios.post(

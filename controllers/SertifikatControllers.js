@@ -166,7 +166,7 @@ export const updateSertifikat = async (req, res) => {
     if (
       req.roles === "admin" ||
       req.roles === "kepala sekolah" ||
-      req.roles === "mitra penerbit"
+      req.roles === "mitra"
     ) {
       await Sertifikat.update(
         {
