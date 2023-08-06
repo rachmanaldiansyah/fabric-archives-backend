@@ -74,6 +74,27 @@ app.post("/invoke/ijazah/chaincode-ijazah", async (req, res) => {
   }
 });
 
+app.post("/invoke/ijazah/chaincode-ijazah", async (req, res) => {
+  try {
+    const verifyAssetResponse = await axios.post(
+      "http://144.126.209.213:8802/invoke/ijazah/chaincode-ijazah",
+      req.body,
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Credentials": "true",
+        },
+      }
+    );
+    res.send(verifyAssetResponse.data);
+  } catch (error) {
+    console.error("Failed to invoke chaincode:", error);
+    res.status(500).send("Failed to invoke chaincode");
+  }
+});
+
 app.listen(process.env.APP_PORT_BC, () => {
   console.log(`Proxy server is running on http://localhost:` + process.env.APP_PORT_BC);
 });

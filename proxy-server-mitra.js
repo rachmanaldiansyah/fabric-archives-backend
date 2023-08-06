@@ -73,6 +73,27 @@ app.post("/invoke/sertifikat/chaincode-sertifikat", async (req, res) => {
   }
 });
 
+app.post("/invoke/sertifikat/chaincode-sertifikat", async (req, res) => {
+  try {
+    const verifyAssetResponse = await axios.post(
+      "http://144.126.209.213:8802/invoke/sertifikat/chaincode-sertifikat",
+      req.body,
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+          "Access-Control-Allow-Credentials": "true",
+        },
+      }
+    );
+    res.send(verifyAssetResponse.data);
+  } catch (error) {
+    console.error("Failed to invoke chaincode:", error);
+    res.status(500).send("Failed to invoke chaincode");
+  }
+});
+
 app.listen(5002, () => {
   console.log(`Proxy server is running on http://localhost:` + 5002);
 });
