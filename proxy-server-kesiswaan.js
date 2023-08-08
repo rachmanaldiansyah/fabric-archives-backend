@@ -44,7 +44,7 @@ app.post("/user/enroll", async (req, res) => {
       }
     );
     token = enrollResponse.data.token;
-    console.log("Fetched token:", token);
+    // console.log("Fetched token:", token);
     res.send(enrollResponse.data);
   } catch (error) {
     console.error("Failed to fetch token:", error);
