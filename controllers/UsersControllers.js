@@ -5,7 +5,7 @@ export const getUsers = async (req, res) => {
   try {
     const response = await Users.findAll({
       // instruksi untuk hanya menampilkan attributes yang di minta
-      attributes: ["uuid", "nama", "email", "roles"],
+      attributes: ["uuid", "nama", "email", "roles", "nip", "createdAt"],
     });
     res.status(200).json(response);
   } catch (error) {
@@ -16,7 +16,7 @@ export const getUsers = async (req, res) => {
 export const getUsersById = async (req, res) => {
   try {
     const response = await Users.findOne({
-      attributes: ["uuid", "nama", "email", "roles"],
+      attributes: ["uuid", "nama", "email", "roles", "nip", "createdAt"],
       where: {
         uuid: req.params.id,
       },
@@ -28,7 +28,7 @@ export const getUsersById = async (req, res) => {
 };
 
 export const createUsers = async (req, res) => {
-  const { nama, email, password, confPassword, roles } = req.body;
+  const { nama, email, password, confPassword, roles, nip } = req.body;
   if (password !== confPassword)
     return res.status(400).json({
       msg: "Password dan Confirm Password Tidak Cocok, Mohon Diulangi.",
@@ -40,6 +40,7 @@ export const createUsers = async (req, res) => {
       email: email,
       password: hashPassword,
       roles: roles,
+      nip: nip,
     });
     res.status(201).json({ msg: "Register telah berhasil!" });
   } catch (error) {
@@ -55,7 +56,7 @@ export const updateUsers = async (req, res) => {
   });
   if (!user)
     return res.status(404).json({ msg: "Pengguna tidak dapat ditemukan!" });
-  const { nama, email, password, confPassword, roles } = req.body;
+  const { nama, email, password, confPassword, roles, nip } = req.body;
   let hashPassword;
   if (password === "" || password === null) {
     hashPassword = user.password;
@@ -73,6 +74,7 @@ export const updateUsers = async (req, res) => {
         email: email,
         password: hashPassword,
         roles: roles,
+        nip: nip,
       },
       {
         where: {

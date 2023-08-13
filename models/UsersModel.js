@@ -43,9 +43,17 @@ const Users = db.define(
         notEmpty: true,
       },
     },
+    nip: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
   },
   {
     freezeTableName: true,
+    timestamps: true,
   }
 );
 

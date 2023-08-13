@@ -96,6 +96,7 @@ const Ijazah = db.define(
   },
   {
     freezeTableName: true,
+    timestamps: true,
   }
 );
 

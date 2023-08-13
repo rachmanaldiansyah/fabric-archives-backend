@@ -82,6 +82,7 @@ const Sertifikat = db.define(
   },
   {
     freezeTableName: true,
+    timestamps: true,
   }
 );
 
