@@ -22,6 +22,7 @@ export const getIjazah = async (req, res) => {
           "createdAt",
           "konfirmasi_kepsek",
           "konfirmasi_kesiswaan",
+          "updatedAt",
         ],
         include: [
           {
@@ -45,6 +46,7 @@ export const getIjazah = async (req, res) => {
           "createdAt",
           "konfirmasi_kepsek",
           "konfirmasi_kesiswaan",
+          "updatedAt",
         ],
         where: {
           userId: req.userId,
@@ -90,6 +92,7 @@ export const getIjazahById = async (req, res) => {
           "createdAt",
           "konfirmasi_kepsek",
           "konfirmasi_kesiswaan",
+          "updatedAt",
         ],
         where: {
           id: ijazah.id,
@@ -116,6 +119,7 @@ export const getIjazahById = async (req, res) => {
           "createdAt",
           "konfirmasi_kepsek",
           "konfirmasi_kesiswaan",
+          "updatedAt",
         ],
         where: {
           [Op.and]: [{ id: ijazah.id }, { userId: req.userId }],

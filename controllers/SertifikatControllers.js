@@ -20,6 +20,7 @@ export const getSertifikat = async (req, res) => {
           "createdAt",
           "konfirmasi_kepsek",
           "konfirmasi_mitra",
+          "updatedAt",
         ],
         include: [
           {
@@ -41,6 +42,7 @@ export const getSertifikat = async (req, res) => {
           "createdAt",
           "konfirmasi_kepsek",
           "konfirmasi_mitra",
+          "updatedAt",
         ],
         where: {
           userId: req.userId,
@@ -84,6 +86,7 @@ export const getSertifikatById = async (req, res) => {
           "createdAt",
           "konfirmasi_kepsek",
           "konfirmasi_mitra",
+          "updatedAt",
         ],
         where: {
           id: sertifikat.id,
@@ -108,6 +111,7 @@ export const getSertifikatById = async (req, res) => {
           "createdAt",
           "konfirmasi_kepsek",
           "konfirmasi_mitra",
+          "updatedAt",
         ],
         where: {
           [Op.and]: [{ id: sertifikat.id }, { userId: req.userId }],
