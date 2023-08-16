@@ -72,6 +72,18 @@ const Sertifikat = db.define(
       },
       defaultValue: "False",
     },
+    konfirmasi_kepsekUpdatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    konfirmasi_kesiswaanUpdatedAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    konfirmasi_uploadToBlockchain: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
     alasan_penolakan: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -91,6 +103,15 @@ const Sertifikat = db.define(
   {
     freezeTableName: true,
     timestamps: true,
+    updatedAt: false,
+    beforeUpdate: (instance, options) => {
+      if (instance.changed("konfirmasi_kepsek")) {
+        instance.setDataValue("konfirmasi_kepsekUpdatedAt", new Date());
+      }
+      if (instance.changed("konfirmasi_mitra")) {
+        instance.setDataValue("konfirmasi_mitraUpdatedAt", new Date());
+      }
+    },
   }
 );
 

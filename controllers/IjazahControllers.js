@@ -20,9 +20,10 @@ export const getIjazah = async (req, res) => {
           "prodi",
           "arsip_ijazah",
           "createdAt",
-          "updatedAt",
           "konfirmasi_kepsek",
+          "konfirmasi_kepsekUpdatedAt",
           "konfirmasi_kesiswaan",
+          "konfirmasi_kesiswaanUpdatedAt",
           "alasan_penolakan"
         ],
         include: [
@@ -45,10 +46,11 @@ export const getIjazah = async (req, res) => {
           "prodi",
           "arsip_ijazah",
           "createdAt",
-          "updatedAt",
           "konfirmasi_kepsek",
+          "konfirmasi_kepsekUpdatedAt",
           "konfirmasi_kesiswaan",
-          "alasan_penolakan",
+          "konfirmasi_kesiswaanUpdatedAt",
+          "alasan_penolakan"
         ],
         where: {
           userId: req.userId,
@@ -92,10 +94,11 @@ export const getIjazahById = async (req, res) => {
           "prodi",
           "arsip_ijazah",
           "createdAt",
-          "updatedAt",
           "konfirmasi_kepsek",
+          "konfirmasi_kepsekUpdatedAt",
           "konfirmasi_kesiswaan",
-          "alasan_penolakan",
+          "konfirmasi_kesiswaanUpdatedAt",
+          "alasan_penolakan"
         ],
         where: {
           id: ijazah.id,
@@ -120,9 +123,10 @@ export const getIjazahById = async (req, res) => {
           "prodi",
           "arsip_ijazah",
           "createdAt",
-          "updatedAt",
           "konfirmasi_kepsek",
+          "konfirmasi_kepsekUpdatedAt",
           "konfirmasi_kesiswaan",
+          "konfirmasi_kesiswaanUpdatedAt",
           "alasan_penolakan"
         ],
         where: {
@@ -196,7 +200,9 @@ export const updateIjazah = async (req, res) => {
       nama_orangtua,
       arsip_ijazah,
       konfirmasi_kepsek,
+      konfirmasi_kepsekUpdatedAt,
       konfirmasi_kesiswaan,
+      konfirmasi_kesiswaanUpdatedAt,
       alasan_penolakan,
     } = req.body;
     if (
@@ -215,7 +221,9 @@ export const updateIjazah = async (req, res) => {
           nama_orangtua,
           arsip_ijazah,
           konfirmasi_kepsek,
+          konfirmasi_kepsekUpdatedAt,
           konfirmasi_kesiswaan,
+          konfirmasi_kesiswaanUpdatedAt,
           alasan_penolakan,
         },
         {
@@ -240,7 +248,9 @@ export const updateIjazah = async (req, res) => {
           nama_orangtua,
           arsip_ijazah,
           konfirmasi_kepsek,
+          konfirmasi_kepsekUpdatedAt,
           konfirmasi_kesiswaan,
+          konfirmasi_kesiswaanUpdatedAt,
           alasan_penolakan,
         },
         {
