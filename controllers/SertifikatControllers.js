@@ -23,6 +23,7 @@ export const getSertifikat = async (req, res) => {
           "konfirmasi_mitra",
           "konfirmasi_mitraUpdatedAt",
           "alasan_penolakan",
+          "konfirmasi_uploadToBlockchain",
         ],
         include: [
           {
@@ -47,6 +48,7 @@ export const getSertifikat = async (req, res) => {
           "konfirmasi_mitra",
           "konfirmasi_mitraUpdatedAt",
           "alasan_penolakan",
+          "konfirmasi_uploadToBlockchain",
         ],
         where: {
           userId: req.userId,
@@ -94,6 +96,7 @@ export const getSertifikatById = async (req, res) => {
           "konfirmasi_mitra",
           "konfirmasi_mitraUpdatedAt",
           "alasan_penolakan",
+          "konfirmasi_uploadToBlockchain",
         ],
         where: {
           id: sertifikat.id,
@@ -122,6 +125,7 @@ export const getSertifikatById = async (req, res) => {
           "konfirmasi_mitra",
           "konfirmasi_mitraUpdatedAt",
           "alasan_penolakan",
+          "konfirmasi_uploadToBlockchain",
         ],
         where: {
           [Op.and]: [{ id: sertifikat.id }, { userId: req.userId }],
@@ -183,6 +187,7 @@ export const updateSertifikat = async (req, res) => {
       konfirmasi_mitra,
       konfirmasi_mitraUpdatedAt,
       alasan_penolakan,
+      konfirmasi_uploadToBlockchain,
     } = req.body;
     if (
       req.roles === "admin" ||
@@ -202,6 +207,7 @@ export const updateSertifikat = async (req, res) => {
           konfirmasi_mitra,
           konfirmasi_mitraUpdatedAt,
           alasan_penolakan,
+          konfirmasi_uploadToBlockchain,
         },
         {
           where: {
@@ -227,6 +233,7 @@ export const updateSertifikat = async (req, res) => {
           konfirmasi_mitra,
           konfirmasi_mitraUpdatedAt,
           alasan_penolakan,
+          konfirmasi_uploadToBlockchain,
         },
         {
           where: {

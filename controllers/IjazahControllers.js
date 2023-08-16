@@ -24,7 +24,8 @@ export const getIjazah = async (req, res) => {
           "konfirmasi_kepsekUpdatedAt",
           "konfirmasi_kesiswaan",
           "konfirmasi_kesiswaanUpdatedAt",
-          "alasan_penolakan"
+          "alasan_penolakan",
+          "konfirmasi_uploadToBlockchain"
         ],
         include: [
           {
@@ -50,7 +51,8 @@ export const getIjazah = async (req, res) => {
           "konfirmasi_kepsekUpdatedAt",
           "konfirmasi_kesiswaan",
           "konfirmasi_kesiswaanUpdatedAt",
-          "alasan_penolakan"
+          "alasan_penolakan",
+          "konfirmasi_uploadToBlockchain"
         ],
         where: {
           userId: req.userId,
@@ -98,7 +100,8 @@ export const getIjazahById = async (req, res) => {
           "konfirmasi_kepsekUpdatedAt",
           "konfirmasi_kesiswaan",
           "konfirmasi_kesiswaanUpdatedAt",
-          "alasan_penolakan"
+          "alasan_penolakan",
+          "konfirmasi_uploadToBlockchain"
         ],
         where: {
           id: ijazah.id,
@@ -127,7 +130,8 @@ export const getIjazahById = async (req, res) => {
           "konfirmasi_kepsekUpdatedAt",
           "konfirmasi_kesiswaan",
           "konfirmasi_kesiswaanUpdatedAt",
-          "alasan_penolakan"
+          "alasan_penolakan",
+          "konfirmasi_uploadToBlockchain"
         ],
         where: {
           [Op.and]: [{ id: ijazah.id }, { userId: req.userId }],
@@ -204,6 +208,7 @@ export const updateIjazah = async (req, res) => {
       konfirmasi_kesiswaan,
       konfirmasi_kesiswaanUpdatedAt,
       alasan_penolakan,
+      konfirmasi_uploadToBlockchain
     } = req.body;
     if (
       req.roles === "admin" ||
@@ -225,6 +230,7 @@ export const updateIjazah = async (req, res) => {
           konfirmasi_kesiswaan,
           konfirmasi_kesiswaanUpdatedAt,
           alasan_penolakan,
+          konfirmasi_uploadToBlockchain
         },
         {
           where: {
@@ -252,6 +258,7 @@ export const updateIjazah = async (req, res) => {
           konfirmasi_kesiswaan,
           konfirmasi_kesiswaanUpdatedAt,
           alasan_penolakan,
+          konfirmasi_uploadToBlockchain
         },
         {
           where: {
@@ -287,7 +294,11 @@ export const deleteIjazah = async (req, res) => {
       prodi,
       arsip_ijazah,
       konfirmasi_kepsek,
+      konfirmasi_kepsekUpdatedAt,
       konfirmasi_kesiswaan,
+      konfirmasi_kesiswaanUpdatedAt,
+      alasan_penolakan,
+      konfirmasi_uploadToBlockchain
     } = req.body;
     if (req.roles === "admin") {
       await Ijazah.destroy({
