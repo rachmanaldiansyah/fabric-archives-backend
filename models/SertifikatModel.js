@@ -72,6 +72,14 @@ const Sertifikat = db.define(
       },
       defaultValue: "False",
     },
+    alasan_penolakan: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+      defaultValue: "False",
+    },
     userId: {
       type: DataTypes.INTEGER,
       allowNull: true,

@@ -18,9 +18,10 @@ export const getSertifikat = async (req, res) => {
           "keahlian",
           "arsip_sertifikat",
           "createdAt",
+          "updatedAt",
           "konfirmasi_kepsek",
           "konfirmasi_mitra",
-          "updatedAt",
+          "alasan_penolakan",
         ],
         include: [
           {
@@ -40,9 +41,10 @@ export const getSertifikat = async (req, res) => {
           "keahlian",
           "arsip_sertifikat",
           "createdAt",
+          "updatedAt",
           "konfirmasi_kepsek",
           "konfirmasi_mitra",
-          "updatedAt",
+          "alasan_penolakan",
         ],
         where: {
           userId: req.userId,
@@ -84,9 +86,10 @@ export const getSertifikatById = async (req, res) => {
           "keahlian",
           "arsip_sertifikat",
           "createdAt",
+          "updatedAt",
           "konfirmasi_kepsek",
           "konfirmasi_mitra",
-          "updatedAt",
+          "alasan_penolakan",
         ],
         where: {
           id: sertifikat.id,
@@ -109,9 +112,10 @@ export const getSertifikatById = async (req, res) => {
           "keahlian",
           "arsip_sertifikat",
           "createdAt",
+          "updatedAt",
           "konfirmasi_kepsek",
           "konfirmasi_mitra",
-          "updatedAt",
+          "alasan_penolakan",
         ],
         where: {
           [Op.and]: [{ id: sertifikat.id }, { userId: req.userId }],
@@ -170,6 +174,7 @@ export const updateSertifikat = async (req, res) => {
       arsip_sertifikat,
       konfirmasi_kepsek,
       konfirmasi_mitra,
+      alasan_penolakan,
     } = req.body;
     if (
       req.roles === "admin" ||
@@ -186,6 +191,7 @@ export const updateSertifikat = async (req, res) => {
           arsip_sertifikat,
           konfirmasi_kepsek,
           konfirmasi_mitra,
+          alasan_penolakan,
         },
         {
           where: {
@@ -208,6 +214,7 @@ export const updateSertifikat = async (req, res) => {
           arsip_sertifikat,
           konfirmasi_kepsek,
           konfirmasi_mitra,
+          alasan_penolakan,
         },
         {
           where: {

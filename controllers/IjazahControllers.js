@@ -20,9 +20,10 @@ export const getIjazah = async (req, res) => {
           "prodi",
           "arsip_ijazah",
           "createdAt",
+          "updatedAt",
           "konfirmasi_kepsek",
           "konfirmasi_kesiswaan",
-          "updatedAt",
+          "alasan_penolakan"
         ],
         include: [
           {
@@ -44,9 +45,10 @@ export const getIjazah = async (req, res) => {
           "prodi",
           "arsip_ijazah",
           "createdAt",
+          "updatedAt",
           "konfirmasi_kepsek",
           "konfirmasi_kesiswaan",
-          "updatedAt",
+          "alasan_penolakan",
         ],
         where: {
           userId: req.userId,
@@ -90,9 +92,10 @@ export const getIjazahById = async (req, res) => {
           "prodi",
           "arsip_ijazah",
           "createdAt",
+          "updatedAt",
           "konfirmasi_kepsek",
           "konfirmasi_kesiswaan",
-          "updatedAt",
+          "alasan_penolakan",
         ],
         where: {
           id: ijazah.id,
@@ -117,9 +120,10 @@ export const getIjazahById = async (req, res) => {
           "prodi",
           "arsip_ijazah",
           "createdAt",
+          "updatedAt",
           "konfirmasi_kepsek",
           "konfirmasi_kesiswaan",
-          "updatedAt",
+          "alasan_penolakan"
         ],
         where: {
           [Op.and]: [{ id: ijazah.id }, { userId: req.userId }],
@@ -162,12 +166,10 @@ export const createIjazah = async (req, res) => {
       arsip_ijazah: arsip_ijazah,
       userId: req.userId,
     });
-    res
-      .status(201)
-      .json({
-        msg: "Data arsip sertifikat berhasil disimpan!",
-        data: newIjazah,
-      });
+    res.status(201).json({
+      msg: "Data arsip sertifikat berhasil disimpan!",
+      data: newIjazah,
+    });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
@@ -195,6 +197,7 @@ export const updateIjazah = async (req, res) => {
       arsip_ijazah,
       konfirmasi_kepsek,
       konfirmasi_kesiswaan,
+      alasan_penolakan,
     } = req.body;
     if (
       req.roles === "admin" ||
@@ -213,6 +216,7 @@ export const updateIjazah = async (req, res) => {
           arsip_ijazah,
           konfirmasi_kepsek,
           konfirmasi_kesiswaan,
+          alasan_penolakan,
         },
         {
           where: {
@@ -237,6 +241,7 @@ export const updateIjazah = async (req, res) => {
           arsip_ijazah,
           konfirmasi_kepsek,
           konfirmasi_kesiswaan,
+          alasan_penolakan,
         },
         {
           where: {
