@@ -76,7 +76,7 @@ const Sertifikat = db.define(
       type: DataTypes.DATE,
       allowNull: true,
     },
-    konfirmasi_kesiswaanUpdatedAt: {
+    konfirmasi_mitraUpdatedAt: {
       type: DataTypes.DATE,
       allowNull: true,
     },
