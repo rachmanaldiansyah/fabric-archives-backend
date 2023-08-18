@@ -6,7 +6,7 @@ export const getIjazah = async (req, res) => {
   try {
     let response;
     if (
-      (req.roles === "admin", "mitra penerbit", "kesiswaan", "kepala sekolah")
+      (req.roles === "admin", "kesiswaan", "kepala sekolah")
     ) {
       response = await Ijazah.findAll({
         attributes: [
