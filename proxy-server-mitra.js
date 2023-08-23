@@ -94,6 +94,6 @@ app.post("/invoke/sertifikat/chaincode-sertifikat", async (req, res) => {
   }
 });
 
-app.listen(5002, () => {
-  console.log(`Proxy server is running on http://localhost:` + 5002);
+app.listen(process.env.APP_PORT_BC_MITRA, () => {
+  console.log(`Proxy server is running on http://localhost:` + process.env.APP_PORT_BC_MITRA);
 });

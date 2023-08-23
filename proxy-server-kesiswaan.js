@@ -95,6 +95,6 @@ app.post("/invoke/ijazah/chaincode-ijazah", async (req, res) => {
   }
 });
 
-app.listen(process.env.APP_PORT_BC, () => {
-  console.log(`Proxy server is running on http://localhost:` + process.env.APP_PORT_BC);
+app.listen(process.env.APP_PORT_BC_ADMIN, () => {
+  console.log(`Proxy server is running on http://localhost:` + process.env.APP_PORT_BC_ADMIN);
 });
