@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 import Users from "./UsersModel.js";
+import Siswa from "./SiswaModel.js";
 
 const { DataTypes } = Sequelize;
 const Sertifikat = db.define(
@@ -99,6 +100,13 @@ const Sertifikat = db.define(
         notEmpty: true,
       },
     },
+    siswaId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      validate: {
+        notEmpty: true,
+      },
+    },
   },
   {
     freezeTableName: true,
@@ -117,5 +125,8 @@ const Sertifikat = db.define(
 
 Users.hasMany(Sertifikat);
 Sertifikat.belongsTo(Users, { foreignKey: "userId" });
+
+Siswa.hasMany(Sertifikat);
+Sertifikat.belongsTo(Siswa, { foreignKey: "siswaId" });
 
 export default Sertifikat;
