@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 import Users from "./UsersModel.js";
+import Siswa from "./SiswaModel.js";
 
 const { DataTypes } = Sequelize;
 const Ijazah = db.define(
@@ -113,6 +114,13 @@ const Ijazah = db.define(
         notEmpty: true,
       },
     },
+    siswaId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      validate: {
+        notEmpty: true,
+      }
+    }
   },
   {
     freezeTableName: true,
@@ -131,5 +139,8 @@ const Ijazah = db.define(
 
 Users.hasMany(Ijazah);
 Ijazah.belongsTo(Users, { foreignKey: "userId" });
+
+Siswa.hasMany(Ijazah);
+Ijazah.belongsTo(Siswa, { foreignKey: "siswaId" });
 
 export default Ijazah;

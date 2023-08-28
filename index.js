@@ -8,6 +8,8 @@ import UsersRoute from "./routes/UsersRoute.js";
 import IjazahRoute from "./routes/IjazahRoute.js";
 import SertifikatRoute from "./routes/SertifikatRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
+import SiswaRoute from "./routes/SiswaRoute.js";
+
 dotenv.config();
 
 const app = express();
@@ -45,6 +47,7 @@ app.use(UsersRoute);
 app.use(IjazahRoute);
 app.use(SertifikatRoute);
 app.use(AuthRoute);
+app.use(SiswaRoute);
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", "true");
