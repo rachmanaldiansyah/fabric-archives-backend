@@ -171,11 +171,17 @@ export const getIjazahById = async (req, res) => {
 
 export const createIjazah = async (req, res) => {
   try {
-    const { no_ijazah, arsip_ijazah } = req.body;
+    const { no_ijazah, nisn, nis, nama, jk, nama_orangtua, prodi, arsip_ijazah } = req.body;
 
     const newIjazah = await Ijazah.create({
       no_ijazah: no_ijazah,
+      nisn: nisn,
+      nis: nis,
+      nama: nama,
+      jk: jk,
+      nama_orangtua: nama_orangtua,
       arsip_ijazah: arsip_ijazah,
+      prodi: prodi,
       siswaId: req.siswaId,
       userId: req.userId,
     });

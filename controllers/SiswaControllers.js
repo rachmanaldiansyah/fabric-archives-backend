@@ -110,6 +110,42 @@ export const getSiswaById = async (req, res) => {
   }
 };
 
+export const getSiswaByNISN = async (req, res) => {
+  try {
+    const siswa = await Siswa.findOne({
+      where: {
+        nisn: req.params.nisn,
+      },
+    });
+
+    if (!siswa) {
+      return res.status(404).json({ msg: "Data siswa tidak dapat ditemukan!" });
+    }
+
+    res.status(200).json(siswa);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
+export const getSiswaByNIS = async (req, res) => {
+  try {
+    const siswa = await Siswa.findOne({
+      where: {
+        nis: req.params.nis,
+      },
+    });
+
+    if (!siswa) {
+      return res.status(404).json({ msg: "Data siswa tidak dapat ditemukan!" });
+    }
+
+    res.status(200).json(siswa);
+  } catch (error) {
+    res.status(500).json({ msg: error.message });
+  }
+};
+
 export const createSiswa = async (req, res) => {
   const { nisn, nis, nama, jk, nama_orangtua, prodi } = req.body;
   try {
@@ -196,8 +232,7 @@ export const deleteSiswa = async (req, res) => {
       return res.status(404).json({
         msg: "Data siswa tidak dapat ditemukan.",
       });
-    const { nisn, nis, nama, jk, nama_orangtua, prodi } =
-      req.body;
+    const { nisn, nis, nama, jk, nama_orangtua, prodi } = req.body;
     if (req.roles === "admin") {
       await Siswa.destroy({
         where: {
@@ -215,9 +250,7 @@ export const deleteSiswa = async (req, res) => {
         },
       });
     }
-    res
-      .status(200)
-      .json({ msg: "Data siswa berhasil dihapus!" });
+    res.status(200).json({ msg: "Data siswa berhasil dihapus!" });
   } catch (error) {
     res.status(500).json({ msg: error.message });
   }
